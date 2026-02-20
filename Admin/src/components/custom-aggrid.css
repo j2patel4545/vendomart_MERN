@@ -1,0 +1,243 @@
+/* =======================
+   Custom AG Grid Theme
+   ======================= */
+
+.ag-theme-alpine {
+  --ag-header-background-color: #f1f5f9;
+  --ag-header-foreground-color: #1e293b;
+  --ag-row-border-color: #e2e8f0;
+  --ag-font-family: "Inter", "Segoe UI", sans-serif;
+  --ag-font-size: 14px;
+  --ag-header-height: 42px;
+  --ag-row-height: 42px;
+  
+  --ag-borders: solid #e2e8f0;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/* Header cells */
+.ag-header-cell {
+  font-weight: 600;
+  background: #f7fafc !important;
+  color: #1e293b !important;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center; /* vertical center header text/icons */
+}
+
+/* Header floating filter boxes */
+.ag-floating-filter-body input {
+  border: 1px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  height: 28px !important;
+  padding: 0 6px !important;
+  font-size: 13px !important;
+  /* make sure input sits centered within the floating filter cell */
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Body rows */
+.ag-row {
+  border-bottom: 1px solid #e2e8f0 !important;
+   
+
+  
+}
+
+.ag-cell {
+  /* center cell content vertically */
+  display: flex;
+  
+  align-items: center;
+  color: #334155;
+  font-size: 14px;
+  
+  /* text-align: center ; */
+  /* justify-content: center; */
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  height: 100%;
+}
+
+.ag-row-hover {
+  background-color: #f1f5f9 !important;
+  
+}
+
+/* Status Buttons */
+.status-active {
+  background: #0f5132;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 2px 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.status-inactive {
+  background: #3a3a3a;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 2px 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Toolbar */
+.data-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.data-toolbar input[type="text"] {
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+.data-toolbar button {
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 500;
+}
+
+/* Pagination section (updated to match screenshot) */
+.pagination-footer {
+  background: #d2e7ee;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 16px;
+}
+
+/* inner wrapper to control layout */
+.pagination-footer .footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* left section */
+.pagination-footer .left-section { display: flex; align-items: center; gap: 10px; }
+.pagination-footer .rows-select {
+  border: 1px solid #e6eef2; 
+  background: #fbfeff; /* very light bg */
+  color: #0f1720;
+  border-radius: 6px;
+  padding: 4px 8px; /* smaller padding for minimal space */
+  font-size: 13px;
+  min-width: 64px; /* reduced min width */
+  height: 32px;
+  box-shadow: none;
+}
+
+/* make options compact */
+.pagination-footer .rows-select option {
+  padding: 4px 6px;
+  font-size: 13px;
+}
+
+/* ensure select label and control align nicely in small space */
+.pagination-footer .left-section { gap: 8px; align-items: center; }
+
+/* center pagination: circular buttons */
+.pagination-center { display: flex; align-items: center; gap: 10px; }
+
+/* common circle button */
+.circle-btn {
+  width: 35px;
+  height: 35px;
+    border: 1px solid #204C3E;
+
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid #204C3E; dark green border */
+  background: transparent;
+  color: #204C3E;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.08s;
+  box-shadow: none;
+}
+
+/* nav smaller icons */
+.circle-btn.nav-btn { width: 35px; height: 35px;  border-color: rgba(47,107,90,0.18); color: #204C3E; background: rgba(47,107,90,0.03); }
+
+/* active/current page filled */
+.circle-btn.page-number.active {
+  background: #204C3E;
+  color: #fff;
+  border-color: #204C3E;
+  border: 1px solid #204C3E;
+  box-shadow: 0 2px 6px rgba(47,107,90,0.15);
+}
+
+/* hover */
+.circle-btn:hover { transform: translateY(-1px); }
+
+/* disabled state */
+.circle-btn[disabled], .circle-btn[disabled]:hover {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border: 1px solid #204C3E;
+
+  transform: none;
+}
+
+/* ellipsis style */
+.page-ellipsis {
+  display: inline-block;
+  width: 32px;
+  text-align: center;
+  color: #204C3E;
+  font-weight: 600;
+}
+
+/* right section export buttons - dark rounded */
+.export-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: #fff;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* individual export colors */
+.export-pdf { background: #445a64; }
+.export-excel { background: #002c54; }
+.export-print { background: #1E3745; }
+
+/* single-line truncation helper for cell content */
+.truncate-cell {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* ensure it respects parent's width */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* small responsive tweak */
+@media (max-width: 768px) {
+  .pagination-footer .footer-inner { flex-direction: column; gap: 12px; align-items: stretch; }
+  .pagination-center { justify-content: center; }
+  .right-section { justify-content: flex-end; }
+}

@@ -1,0 +1,64 @@
+.button {
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  padding: 0 12px;
+  overflow: hidden;
+  white-space: nowrap; /* label wrap na ho */
+}
+
+.button,
+.button__icon,
+.button__text {
+  transition: all 0.3s ease;
+}
+
+/* text */
+.button__text {
+  color: #fff;
+  font-weight: 600;
+  padding-right: 40px; /* icon space */
+}
+
+/* icon */
+.button__icon {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 40px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  width: 22px;
+  stroke: #fff;
+}
+
+/* hover animation */
+.button:hover {
+  background-color: #34974d;
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 100%;
+}
+
+/* active */
+.button:active {
+  border-color: #2e8644;
+}
+
+.button:active .button__icon {
+  background-color: #2e8644;
+}

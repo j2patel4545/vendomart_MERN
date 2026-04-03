@@ -24,7 +24,7 @@ const DynamicImageSlider = ({ images = [], interval = 3000, className }) => {
     setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <div className={`relative w-full h-64 md:h-96 overflow-hidden ${className}`}>
+    <div className={`relative w-full h-64 md:h-[60vh] overflow-hidden ${className}`}>
       {/* Images */}
       <AnimatePresence>
         {images.map((img, index) =>

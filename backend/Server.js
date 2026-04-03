@@ -12,7 +12,8 @@ import sliderImageRoutes from "./routes/sliderImageRoutes.js";
 import productMasterRoutes from "./routes/productMasterRoutes.js";
 import cartMasterRoutes from "./routes/cartMasterRoutes.js";
 import userMasterRoutes from "./routes/userMasterRoutes.js";
-import SearchRouter from './routes/SearchRouter.js'
+import SearchRouter from './routes/SearchRouter.js';
+import orderMasterRoutes from './routes/orderMasterRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -47,7 +48,8 @@ app.use("/api/slider-images", sliderImageRoutes);
 app.use("/api/product-master", productMasterRoutes);
 app.use("/api/cart-master", cartMasterRoutes);
 app.use("/api/users", userMasterRoutes);
-app.use('/api/search',SearchRouter)
+app.use('/api/search', SearchRouter);
+app.use('/api/orders', orderMasterRoutes);
 
 
 

@@ -42,7 +42,7 @@ router.put(
 );
 
 /* DELETE */
-router.delete("/:id", protectAdmin, deleteSliderImage);
+router.delete("/:id", deleteSliderImage);
 
 /* STATUS */
 router.patch("/status/:id", protectAdmin, toggleSliderStatus);

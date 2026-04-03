@@ -37,7 +37,7 @@ router.put("/:id",
   uploadWithErrorHandling, updateProductType);
 
 /* DELETE */
-router.delete("/:id", protectAdmin, deleteProductType);
+router.delete("/:id", deleteProductType);
 
 /* STATUS TOGGLE */
 router.patch("/status/:id", protectAdmin, toggleProductTypeStatus);

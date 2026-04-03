@@ -7,6 +7,7 @@ import {
   getAdminProfile,
   updateAdmin,
   deleteAdmin,
+  getDashboardStats,
 } from "../controllers/adminController.js";
 
 import { protectAdmin } from "../middleware/authMiddleware.js";
@@ -28,6 +29,8 @@ router.post("/reset-password/:token", resetPassword);
 router.get("/profile",
    protectAdmin, 
    getAdminProfile);
+
+router.get("/dashboard-stats", getDashboardStats);
 
 router.put(
   "/profile",

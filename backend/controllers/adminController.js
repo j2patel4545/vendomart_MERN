@@ -2,6 +2,10 @@ import Admin from "../models/Admin.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import UserMaster from "../models/UserMaster.js";
+import ProductType from "../models/ProductType.js";
+import ProductMaster from "../models/ProductMaster.js";
+import SliderImage from "../models/SliderImage.js";
 
 /* Generate JWT */
 const generateToken = (id) =>
@@ -130,3 +134,47 @@ export const resetPassword = async (req, res) => {
 
   res.json({ message: "Password reset successful" });
 };
+
+/* ================= DASHBOARD STATS ================= */
+export const getDashboardStats = async (req, res) => {
+  try {
+    const usersCount = await UserMaster.countDocuments();
+    const productTypesCount = await ProductType.countDocuments();
+    const productsCount = await ProductMaster.countDocuments();
+    const slidersCount = await SliderImage.countDocuments();
+
+    // Chart Data logic: Last 7 days User registrations
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+    sevenDaysAgo.setHours(0, 0, 0, 0);
+
+    const recentUsers = await UserMaster.find(
+      { createdAt: { $gte: sevenDaysAgo } },
+      "createdAt"
+    );
+
+    // Array for [Day1, Day2, ... Day7]
+    const chartData = [0, 0, 0, 0, 0, 0, 0];
+    const today = new Date();
+    today.setHours(23, 59, 59, 999); // end of today
+
+    recentUsers.forEach((u) => {
+      const diffTime = today - new Date(u.createdAt);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays >= 0 && diffDays < 7) {
+        chartData[6 - diffDays] += 1;
+      }
+    });
+
+    res.json({
+      users: usersCount,
+      productTypes: productTypesCount,
+      products: productsCount,
+      sliders: slidersCount,
+      chartData: chartData,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching dashboard stats" });
+  }
+};
+

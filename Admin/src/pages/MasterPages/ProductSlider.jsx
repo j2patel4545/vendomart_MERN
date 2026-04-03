@@ -3,12 +3,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-
+import { useAuth } from "../../context/AuthContext";
 
 import UserGrid from "../../components/UserGrid";
 import Modal from "../../components/Modal";
 
 const ProductSlider = () => {
+  const { token } = useAuth();
   const [data, setData] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
   const [zoomImage, setZoomImage] = useState(null);
@@ -109,6 +110,10 @@ const ProductSlider = () => {
     }
 
     try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+
       const payload = new FormData();
       payload.append("productTypeId", formData.productTypeId);
       payload.append("sliderName", formData.sliderName);
@@ -121,13 +126,15 @@ const ProductSlider = () => {
       if (isEdit) {
         await axios.put(
           `http://localhost:9999/api/slider-images/${editId}`,
-          payload
+          payload,
+          config
         );
         Swal.fire("Updated", "Slider updated", "success");
       } else {
         await axios.post(
           "http://localhost:9999/api/slider-images",
-          payload
+          payload,
+          config
         );
         Swal.fire("Success", "Slider added", "success");
       }
@@ -153,8 +160,12 @@ const ProductSlider = () => {
 
     if (confirm.isConfirmed) {
       try {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
         await axios.delete(
-          `http://localhost:9999/api/slider-images/${row._id}`
+          `http://localhost:9999/api/slider-images/${row._id}`,
+          config
         );
         Swal.fire("Deleted", "", "success");
         fetchData();

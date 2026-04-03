@@ -6,6 +6,7 @@ import {
   MdPhotoLibrary,
   MdSettings,
   MdPerson,
+  MdShoppingBag,
 } from "react-icons/md";
 
 import Dashboard from "../pages/Dashboard";
@@ -15,6 +16,7 @@ import Profile from "../pages/Profile";
 import ProductType from "../pages/MasterPages/ProductType";
 import ProductSlider from "../pages/MasterPages/ProductSlider";
 import ProductMaster from "../pages/MasterPages/ProductMaster";
+import Orders from "../pages/MasterPages/Orders";
 
 export const dashboardMenu = [
   {
@@ -22,6 +24,12 @@ export const dashboardMenu = [
     path: "dashboard",
     icon: MdDashboard,
     element: <Dashboard />,
+  },
+  {
+    label: "Orders",
+    path: "orders",
+    icon: MdShoppingBag,
+    element: <Orders />,
   },
   {
     label: "Users",
@@ -32,19 +40,19 @@ export const dashboardMenu = [
   {
     label: "Product Type",
     path: "productType",
-    icon: MdCategory, // better icon for product type
+    icon: MdCategory,
     element: <ProductType />,
   },
   {
     label: "Product Master",
     path: "productMaster",
-    icon: MdInventory2, // inventory icon for products
+    icon: MdInventory2,
     element: <ProductMaster />,
   },
   {
     label: "Product Slider",
     path: "productSlider",
-    icon: MdPhotoLibrary, // gallery/photo icon
+    icon: MdPhotoLibrary,
     element: <ProductSlider />,
   },
   {

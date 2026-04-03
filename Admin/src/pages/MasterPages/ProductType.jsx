@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext";
 
 import UserGrid from "../../components/UserGrid";
 import Modal from "../../components/Modal";
 
 const ProductType = () => {
+  const { token } = useAuth();
   const [data, setData] = useState([]);
   const [zoomImage, setZoomImage] = useState(null);
 
@@ -73,6 +75,10 @@ const ProductType = () => {
     }
 
     try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+
       const payload = new FormData();
       payload.append("productTypeName", formData.productTypeName);
       payload.append("description", formData.description);
@@ -81,13 +87,15 @@ const ProductType = () => {
       if (isEdit) {
         await axios.put(
           `http://localhost:9999/api/product-type/${editId}`,
-          payload
+          payload,
+          config
         );
         Swal.fire("Updated", "Product Type updated", "success");
       } else {
         await axios.post(
           "http://localhost:9999/api/product-type",
-          payload
+          payload,
+          config
         );
         Swal.fire("Success", "Product Type added", "success");
       }
@@ -113,8 +121,12 @@ const ProductType = () => {
 
     if (confirm.isConfirmed) {
       try {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
         await axios.delete(
-          `http://localhost:9999/api/product-type/${row._id}`
+          `http://localhost:9999/api/product-type/${row._id}`,
+          config
         );
         Swal.fire("Deleted", "", "success");
         fetchData();
